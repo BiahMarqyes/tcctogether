@@ -1,17 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      <h1 style="color: rgb(159, 216, 211);">Together</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<div class="fundo">
+<div class="fundo2">
+  <ion-card button [routerLink]="['/sobre']">
+    <ion-card-header>
+      <img src="https://www.albanymedical.com.br/wp-content/uploads/2021/04/foto-clinica-di-fiori-pediatria05.jpg" />
+      <h4>Di Fiori Pediatria</h4>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card-content>
+      a clínica perfeita para seu filho!
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card button [routerLink]="['/sobre']">
+    <ion-card-header>
+      <img src="https://i.pinimg.com/1200x/23/11/6a/23116a08edade06f70892cb5e83f0e8e.jpg" />
+      <h4>Clínica Santa Helena</h4>
+    </ion-card-header>
+
+    <ion-card-content>
+      onde sua saúde é nossa prioridade!
+    </ion-card-content>
+  </ion-card>
+
+</div>
+</div>
 </ion-content>
