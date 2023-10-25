@@ -13,8 +13,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
+import { HttpClientModule } from '@angular/common/http';
+import { MenuAuthDirective } from './menu-auth.directive';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuAuthDirective],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule,
             AngularFireModule.initializeApp(
               {
@@ -26,7 +29,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
                 appId: "1:946856601170:web:395ebb2af58a3d287de18b",
                 measurementId: "G-84YX78PSNB"
               }
-            ), AngularFireAuthModule, AngularFireDatabaseModule
+            ), AngularFireAuthModule, AngularFireDatabaseModule, HttpClientModule
            ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },],
   bootstrap: [AppComponent],

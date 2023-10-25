@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AutenticacaoService } from '../auth/autenticacao.service';
 
 @Component({
   selector: 'app-logincli',
@@ -9,36 +10,36 @@ import { Router } from '@angular/router';
 })
 export class LogincliPage implements OnInit {
 
-  formLogin: FormGroup;
+  hide = true;
 
-  mensagens = {
-    nome: [
-      { tipo: 'required', mensagem: 'O campo Nome de Usuário é obrigatório.' },
-      { tipo: 'minlength', mensagem: 'O Nome de Usuário deve ter pelo menos 3 caracteres.' },
-    ],
-    senha: [
-      { tipo: 'required', mensagem: 'O campo Senha é obrigatório.' },
-      { tipo: 'minlength', mensagem: 'A Senha deve ter pelo menos 6 caracteres.', },
-      { tipo: 'maxlength', mensagem: 'A Senha deve ter no máximo 8 caractéres.' },
-    ],
-  };
+  formLogin!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private route: Router) {
+  constructor(private readonly formBuilder: FormBuilder,
+    private authService: AutenticacaoService,
+    private route: Router){}
+
+  ngOnInit(): void {
+    this.criarFormulario();
+  }
+
+  criarFormulario(): void{
     this.formLogin = this.formBuilder.group({
-      nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      senha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-    });
-   }
-
-  ngOnInit() {
+      email: ['', [Validators.required, Validators.email ]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
+    })
   }
 
-  async entrar() {
-    if(this.formLogin.valid){
-      console.log(this.formLogin);
-    }else{
-      alert('Formulário Inválido!');
+  login(){
+    if(!this.formLogin.valid){
+      return;
     }
+    this.authService.login(this.formLogin.getRawValue()).then(resposta => {
+      this.route.navigate(['home'])
+    },(error) => {
+      alert('erro ao tentar fazer o login')
+    })
   }
+
+
 
 }

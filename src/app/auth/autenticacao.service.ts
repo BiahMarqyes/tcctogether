@@ -11,6 +11,8 @@ import { GoogleAuthProvider } from '@angular/fire/auth'
 })
 export class AutenticacaoService {
 
+  baseUrl = 'http://localhost:3000';
+
   private userSubject = new BehaviorSubject<any>(null);
 
   user: any;
